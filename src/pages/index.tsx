@@ -6,7 +6,7 @@ import { Header } from '@/components/header'
 export default function Home() {
   return (
     <main>
-      <Header />
+      <Header title={`Conteúdo bruto entregue para você de maneira totalmente lapidada`} />
       <h1 className={styles.title}>main</h1>
     </main>
   )

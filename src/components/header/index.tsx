@@ -1,7 +1,12 @@
 import styles from '../../styles/Header.module.scss'
 import logo from '../../../public/logo.png'
 
-export const Header: React.FunctionComponent = () => {
+type HeaderProps = {
+  title?: string
+  component?: React.ReactNode
+}
+
+export const Header: React.FunctionComponent<HeaderProps> = ({ title, component }) => {
   return (
     <header>
 
@@ -28,7 +33,7 @@ export const Header: React.FunctionComponent = () => {
       </div>
 
       <div className={styles.cover} >
-        <h1>Conteúdo bruto entregue para você <br /> de maneira totalmente lapidada</h1>
+        { title ? <h1> {title} </h1> : component }
       </div>
       
     </header>
