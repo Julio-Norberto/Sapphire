@@ -48,3 +48,52 @@
         width: 60%;
     }
 }
+
+@media (min-width: 1400px) {
+    .menuContainer {
+        border: 1px solid green;
+    }
+
+    .cover {
+        height: 500px;
+
+        h1 {
+            width: 45%;
+        }
+    }
+}
+
+@media (min-width: 250px) and (max-width: 750px) {
+    .menuContainer {
+        padding: 0px 14px;
+        width: 100%;
+    }
+
+    .menu {
+        ul {
+            width: 100%;
+
+            li {
+                font-size: 10px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .logo img {
+        width: 75px;
+        height: 35px;
+    }
+
+    .cover {
+        height: 300px;
+        background-size: cover;
+        background-position: top;
+
+        h1 {
+            font-size: 22px;
+            width: 100%;
+            color: #47b2ef;
+        }
+    }
+}

@@ -11,7 +11,7 @@ export const Header: React.FunctionComponent<HeaderProps> = ({ title, component 
     <header>
 
       <div className={styles.menuContainer}>
-        <div className='logo'>
+        <div className={styles.logo}>
             <a> <img height={58} src={logo.src} alt="" /> </a>
         </div>
 
