@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "ci": "yarn install --frozen-lockfile",
+    "test": "jest --watchAll"
   },
   "dependencies": {
     "@types/node": "18.16.0",
@@ -16,5 +18,10 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "jest": "^29.5.0",
+    "sass": "^1.62.0"
   }
 }
