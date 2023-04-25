@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "ci": "yarn install --frozen-lockfile",
-    "test": "jest --watchAll"
+    "test": "jest"
   },
   "dependencies": {
     "@types/node": "18.16.0",
