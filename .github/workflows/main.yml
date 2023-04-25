@@ -1,8 +1,10 @@
 name: ci-setup-node
 on: 
   pull_request:
+    branches:
+      - develop
 jobs:
-  build:
+  check-application:
     runs-on: ubuntu-latest
     strategy:
       matrix:
