@@ -1,8 +1,13 @@
 import { ABeeZee } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 
+import { Header } from '@/components/header'
+
 export default function Home() {
   return (
-    <h1>Hello World!</h1>
+    <main>
+      <Header />
+      main
+    </main>
   )
 }
