@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main>
       <Header />
-      main
+      <h1 className={styles.title}>main</h1>
     </main>
   )
 }
