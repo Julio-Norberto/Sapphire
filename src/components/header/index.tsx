@@ -6,13 +6,13 @@ type HeaderProps = {
   component?: React.ReactNode
 }
 
-export const Header: React.FunctionComponent<HeaderProps> = ({ title, component }) => {
+export const Header = ({ title, component }: HeaderProps) => {
   return (
     <header>
 
       <div className={styles.menuContainer}>
         <div className={styles.logo}>
-            <a> <img height={58} src={logo.src} alt="" /> </a>
+            <a> <img height={58} src={logo.src} alt="sapphire logo" /> </a>
         </div>
 
         <div className={styles.menu}>
