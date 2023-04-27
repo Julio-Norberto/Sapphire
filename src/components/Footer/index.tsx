@@ -5,8 +5,8 @@ export const Footer = () => {
   return (
     <footer className={styles.footerContainer} >
       <div className={styles.footerIcons} >
-        <a href="https://www.instagram.com/julionorberto_s/" target='_blank'> <InstagramLogo color='#1B98E0' size={32} /> </a>
-        <a href="https://www.linkedin.com/in/julio-norberto/" target='_blank'> <LinkedinLogo color='#1B98E0' size={32} /> </a>
+        <a href="https://www.instagram.com/julionorberto_s/" target='_blank'> <InstagramLogo alt='Instagram logo' color='#1B98E0' size={32} /> </a>
+        <a href="https://www.linkedin.com/in/julio-norberto/" target='_blank'> <LinkedinLogo alt='LinkedIn logo' color='#1B98E0' size={32} /> </a>
       </div>
 
       <div className={styles.footerText} >
