@@ -1,18 +1,24 @@
 import styles from '../../styles/PostCard.module.scss'
-import defaultImage from '../../../public/azulEpreto.png'
 
-export const PostCard = () => {
+interface IPostCardProps {
+  image: any
+  category: string
+  title: string
+  summary: string
+}
+
+export const PostCard = ({ image, category, title, summary }: IPostCardProps) => {
   return (
     <div className={styles.postCardContainer} >
       <div className={styles.postCardImage}>
-        <img width={`100%`} height={`200px`} src={defaultImage.src} alt="" />
-        <p>Category</p>
+        <img width={`100%`} height={`200px`} src={image.src} alt="" />
+        <p> { category } </p>
       </div>
 
       <div className={styles.postCardText}>
-        <h2>Title</h2>
+        <h2> { title } </h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit, Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          { summary }
         </p>
       </div>
     </div>

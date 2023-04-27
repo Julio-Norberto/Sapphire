@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <main>
       <Header title={`Conteúdo bruto entregue para você de maneira totalmente lapidada`} />
-      <PostCard />
       <Footer />
     </main>
   )
