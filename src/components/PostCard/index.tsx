@@ -16,7 +16,7 @@ export const PostCard = ({ image, category, title, summary }: IPostCardProps) =>
       </div>
 
       <div className={styles.postCardText}>
-        <h2> { title } </h2>
+        <h2> <a href="#"> { title } </a> </h2>
         <p>
           { summary }
         </p>
