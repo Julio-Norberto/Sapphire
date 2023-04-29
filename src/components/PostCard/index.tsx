@@ -11,7 +11,7 @@ export const PostCard = ({ image, category, title, summary }: IPostCardProps) =>
   return (
     <div className={styles.postCardContainer} >
       <div className={styles.postCardImage}>
-        <img width={`100%`} height={`200px`} src={image} alt="" />
+        <img width={`100%`} height={`200px`} src={image} alt="Capa do post" />
         <p> { category } </p>
       </div>
 
