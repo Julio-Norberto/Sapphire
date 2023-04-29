@@ -4,7 +4,7 @@ import image1 from '../../../public/oazulEbranco.png'
 import image2 from '../../../public/verdeEbranco.png'
 import image3 from '../../../public/roxoEbranco.png'
 
-import { PostCard } from '../postCard'
+import { PostCard } from '../PostCard'
 
 
 interface IPosts {
