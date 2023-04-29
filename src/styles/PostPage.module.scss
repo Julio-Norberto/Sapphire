@@ -45,3 +45,9 @@
         font-size: 10px;
     }
 }
+
+@media (min-width: 250px) and (max-width: 750px) {
+    .postPageContainer {
+        width: 90%;
+    }
+}
