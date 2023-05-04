@@ -5,6 +5,8 @@ import image2 from '../../../public/verdeEbranco.png'
 import image3 from '../../../public/roxoEbranco.png'
 
 import { PostCard } from '../PostCard'
+import { useEffect } from 'react'
+import { loadPosts } from '@/api/loadPosts'
 
 
 interface IPosts {
@@ -41,6 +43,10 @@ const posts: IPosts[] = [
 ]
 
 export const Posts = () => {
+  useEffect(() => {
+    loadPosts().then((r: any) => console.log(r.posts.data))
+  }, [])
+
   return (
     <main className={styles.postsContainer} >
       { posts.map((post) => (
