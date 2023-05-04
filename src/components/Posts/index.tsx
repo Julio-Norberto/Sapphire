@@ -5,7 +5,7 @@ import image2 from '../../../public/verdeEbranco.png'
 import image3 from '../../../public/roxoEbranco.png'
 
 import { PostCard } from '../PostCard'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { loadPosts } from '@/api/loadPosts'
 
 
@@ -17,41 +17,21 @@ interface IPosts {
   id: string
 }
 
-// Temporary Mock
-const posts: IPosts[] = [
-  {
-    id: '1',
-    image: image1.src,
-    category: 'TypeScript',
-    title: 'Usando TypeScript POO da forma certa',
-    summary: ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita corporis sit alias optio doloremque praesentium'
-  },
-  {
-    id: '2',
-    image: image2.src,
-    category: 'Back-end',
-    title: 'Multi Threading com Go',
-    summary: ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita corporis sit alias optio doloremque praesentium'
-  },
-  {
-    id: '3',
-    image: image3.src,
-    category: 'Banco de dados',
-    title: 'Prisma - O Guia definitivo',
-    summary: ' Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita corporis sit alias optio doloremque praesentium'
-  },
-]
-
 export const Posts = () => {
   useEffect(() => {
-    loadPosts().then((r: any) => console.log(r.posts.data))
+    loadPosts().then((r: any) => {
+      const arr: any[] = r.posts.data
+      setPosts(arr)
+    })
   }, [])
+
+  const [posts, setPosts] = useState<any[]>()
 
   return (
     <main className={styles.postsContainer} >
-      { posts.map((post) => (
-        <PostCard image={post.image} category={post.category} title={post.title} summary={post.summary} id={post.id} />
-      )) }
+      { posts ? posts.map((post) => (
+        <PostCard key={post.id} image={post.attributes.cover.data.attributes.url} category={post.attributes.categoryPost} title={post.attributes.title} summary={post.attributes.excerpt} id={post.id} />
+      )) : <p> Ainda não temos posts no momento... :) </p> }
     </main>
   )
 }
