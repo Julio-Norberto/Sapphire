@@ -5,9 +5,10 @@ interface IPostCardProps {
   category: string
   title: string
   summary: string
+  id?: string
 }
 
-export const PostCard = ({ image, category, title, summary }: IPostCardProps) => {
+export const PostCard = ({ image, category, title, summary, id }: IPostCardProps) => {
   return (
     <div className={styles.postCardContainer} >
       <div className={styles.postCardImage}>
@@ -16,7 +17,7 @@ export const PostCard = ({ image, category, title, summary }: IPostCardProps) =>
       </div>
 
       <div className={styles.postCardText}>
-        <h2> <a href="#"> { title } </a> </h2>
+        <h2> <a href={`/post/${id}`}> { title } </a> </h2>
         <p>
           { summary }
         </p>

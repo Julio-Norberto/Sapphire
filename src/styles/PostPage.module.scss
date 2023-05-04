@@ -1,0 +1,53 @@
+.postPageContainer {
+    width: 45%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        color: #ffffff;
+    }
+}
+
+.postText {
+    margin: 40px auto;
+    color: #8D8D8D;
+    text-align: justify;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 64px;
+    border-bottom: 1px solid #8D8D8D;
+}
+
+.postAuthor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    img {
+        border-radius: 50%;
+        width: 60px;
+        margin-right: 18px;
+    }
+
+    h3 {
+        color: #1B98E0;
+        font-size: 14px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    p {
+        color: #8D8D8D;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 250px) and (max-width: 750px) {
+    .postPageContainer {
+        width: 90%;
+    }
+}
