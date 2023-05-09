@@ -1,0 +1,56 @@
+.authorComponentContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authorImage {
+    margin-bottom: 8px;
+    img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+.authorText {
+    h2 {
+        color: #1B98E0;
+        font-size: 22px;
+        font-family: 'Courier New', Courier, monospace;
+        margin-bottom: 4px;
+    }
+
+    p {
+        color: #8D8D8D;
+        font-size: 16px;
+        width: 70%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+}
+
+.authorSocials {
+    a {
+        text-decoration: none;
+    }
+}
+
+@media(min-width: 200px) and (max-width: 750px) {
+    .authorImage {
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .authorText {
+        p {
+            color: #FFFFFF;
+            width: 100%;
+            font-weight: bold;
+            font-size: 12px;
+        }
+    }
+}

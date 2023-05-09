@@ -38,6 +38,10 @@
         color: #1B98E0;
         font-size: 14px;
         font-family: 'Courier New', Courier, monospace;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     }
 
     p {

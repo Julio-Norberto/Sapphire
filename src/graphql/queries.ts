@@ -67,3 +67,50 @@ export const GETPOSTBYID = gql`
     }
   }
 `
+
+export const GETAUTHORBYID = gql`
+  query GET_AUTHOR_BY_ID($id: ID!) { # AUTHOR PAGE
+    author(id: $id) {
+      data {
+        attributes {
+          displayName,
+          description,
+          linkedinURL,
+          instagramURL,
+          photo {
+            data {
+              attributes {
+                alternativeText,
+                url
+              }
+            }
+          },
+          posts {
+            data {
+              id,
+              attributes {
+                title,
+                excerpt,
+                category {
+                  data {
+                    attributes {
+                      displayName
+                    }
+                  }
+                },
+                cover {
+                  data {
+                    attributes {
+                      alternativeText,
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

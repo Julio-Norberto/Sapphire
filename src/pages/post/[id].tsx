@@ -1,5 +1,4 @@
 import styles from '../../styles/PostPage.module.scss'
-import img1 from '../../../public/azulEpreto.png'
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
@@ -14,14 +13,22 @@ interface IPostsProps {
     content: string,
     createdAt: string,
     title: string,
-    authorName: string
+    authorName: string,
   }
 }
 
+type Author = {
+  alternativeText: string,
+  url: string,
+  authorTitle?: string
+}
+
 export default function Post() {
-  const { query } = useRouter()
+  const { query, push } = useRouter()
 
   const [posts, setPosts] = useState<IPostsProps>()
+  const [author, setAuthor] = useState<Author>()
+  const [authorId, setAuthorId] = useState<string>()
 
   useEffect(() => {
     const id: Variables = {
@@ -29,8 +36,9 @@ export default function Post() {
     }
 
     loadPostById(id).then((response: any) => {
-      console.log(response.post.data)
       setPosts(response.post.data)
+      setAuthor(response.post.data.attributes.author.data.attributes.photo.data.attributes)
+      setAuthorId(response.post.data.attributes.author.data.id)
     }).catch((error) => {
       console.log(error)
       console.clear()
@@ -51,12 +59,12 @@ export default function Post() {
 
         <div className={styles.postAuthor} >
           <div>
-            <img src={img1.src} alt="" />
+            <img src={author?.url} alt={`${author?.alternativeText}`} />
           </div>
 
           <div>
-            <h3> { posts? posts.attributes.authorName : '' } </h3>
-            <p> Software Developer </p>
+            <h3 onClick={() => push(`/author/${authorId}`)} > { posts? posts.attributes.authorName : 'John Doe' } </h3>
+            <p> { author?.authorTitle ? author.authorTitle : 'Software Developer' } </p>
           </div>
         </div>
       </div>
