@@ -14,14 +14,21 @@ interface IPostsProps {
     content: string,
     createdAt: string,
     title: string,
-    authorName: string
+    authorName: string,
   }
+}
+
+type Author = {
+  alternativeText: string,
+  url: string,
+  authorTitle?: string
 }
 
 export default function Post() {
   const { query } = useRouter()
 
   const [posts, setPosts] = useState<IPostsProps>()
+  const [author, setAuthor] = useState<Author>()
 
   useEffect(() => {
     const id: Variables = {
@@ -29,8 +36,8 @@ export default function Post() {
     }
 
     loadPostById(id).then((response: any) => {
-      console.log(response.post.data)
       setPosts(response.post.data)
+      setAuthor(response.post.data.attributes.author.data.attributes.photo.data.attributes)
     }).catch((error) => {
       console.log(error)
       console.clear()
@@ -51,12 +58,12 @@ export default function Post() {
 
         <div className={styles.postAuthor} >
           <div>
-            <img src={img1.src} alt="" />
+            <img src={author?.url} alt={`${author?.alternativeText}`} />
           </div>
 
           <div>
-            <h3> { posts? posts.attributes.authorName : '' } </h3>
-            <p> Software Developer </p>
+            <h3> { posts? posts.attributes.authorName : 'John Doe' } </h3>
+            <p> { author?.authorTitle ? author.authorTitle : 'Software Developer' } </p>
           </div>
         </div>
       </div>
