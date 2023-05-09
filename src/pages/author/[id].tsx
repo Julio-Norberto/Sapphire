@@ -9,6 +9,7 @@ import { PostCard } from '@/components/PostCard'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/Footer'
 import { AuthorComponent } from '@/components/AuthorComponent'
+import { Loading } from '@/components/Loading'
 
 interface IPostsProps {
   id: string,
@@ -52,6 +53,7 @@ export default function Author() {
 
   const [authorPosts, setAuthorPosts] = useState<IPostsProps[]>()
   const [author, setAuthor] = useState<AuthorProps>()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const id: Variables = {
@@ -62,9 +64,11 @@ export default function Author() {
       console.log(response.author.data)
       setAuthor(response.author.data.attributes)
       setAuthorPosts(response.author.data.attributes.posts.data)
+      setLoading(false)
     }).catch((error) => {
       console.log(error)
       console.clear()
+      setLoading(false)
     })
 
 
@@ -75,34 +79,42 @@ export default function Author() {
       <header>
         <Header 
           component={ 
-            <AuthorComponent 
-              image={author ? author?.photo.data.attributes.url : ''} 
-              alternativeText={author ? author?.photo.data.attributes.alternativeText : ''} 
-              description={author ? author?.description : ''}
-              name={author ? author?.displayName : ''}
-              instagramURL={author ? author?.instagramURL: ''}
-              linkedinURL={author ? author?.linkedinURL: ''}
-            />
+            loading ? (
+              <Loading />
+            ) : (
+              <AuthorComponent 
+                image={author ? author?.photo.data.attributes.url : ''} 
+                alternativeText={author ? author?.photo.data.attributes.alternativeText : ''} 
+                description={author ? author?.description : ''}
+                name={author ? author?.displayName : ''}
+                instagramURL={author ? author?.instagramURL: ''}
+                linkedinURL={author ? author?.linkedinURL: ''}
+              />
+            )
           } 
         />
       </header>
 
       <div className={styles.mainDiv} >
         <div>
-          <h1> Todos os Posts de {author?.displayName} </h1>
+          <h1> { loading ? '' : `Todos os Posts de ${author?.displayName}` } </h1>
         </div>
 
         <div className={styles.authorPageContainer}>
-          {authorPosts?.map((post) => (
-            <PostCard
-              key={post.id} 
-              category={post.attributes.category.data.attributes.displayName} 
-              title={post.attributes.title}
-              summary={post.attributes.excerpt}
-              image={post.attributes.cover.data.attributes.url}
-              id={post.id} 
-            />
-          ))}
+          { loading ? (
+            <Loading /> 
+          ) : (
+            authorPosts?.map((post) => (
+              <PostCard
+                key={post.id} 
+                category={post.attributes.category.data.attributes.displayName} 
+                title={post.attributes.title}
+                summary={post.attributes.excerpt}
+                image={post.attributes.cover.data.attributes.url}
+                id={post.id} 
+              />
+            ))
+          ) }
         </div>
       </div>
 
