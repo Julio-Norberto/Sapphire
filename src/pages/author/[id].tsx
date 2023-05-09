@@ -87,17 +87,23 @@ export default function Author() {
         />
       </header>
 
-      <div className={styles.authorPageContainer}>
-        {authorPosts?.map((post) => (
-          <PostCard
-            key={post.id} 
-            category={post.attributes.category.data.attributes.displayName} 
-            title={post.attributes.title}
-            summary={post.attributes.excerpt}
-            image={post.attributes.cover.data.attributes.url}
-            id={post.id} 
-          />
-        ))}
+      <div className={styles.mainDiv} >
+        <div>
+          <h1> Todos os Posts de {author?.displayName} </h1>
+        </div>
+
+        <div className={styles.authorPageContainer}>
+          {authorPosts?.map((post) => (
+            <PostCard
+              key={post.id} 
+              category={post.attributes.category.data.attributes.displayName} 
+              title={post.attributes.title}
+              summary={post.attributes.excerpt}
+              image={post.attributes.cover.data.attributes.url}
+              id={post.id} 
+            />
+          ))}
+        </div>
       </div>
 
       <footer>
