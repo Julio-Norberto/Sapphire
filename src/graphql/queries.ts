@@ -85,6 +85,7 @@ export const GETAUTHORBYID = gql`
           },
           posts {
             data {
+              id,
               attributes {
                 title,
                 excerpt,
