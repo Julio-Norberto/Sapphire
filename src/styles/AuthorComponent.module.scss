@@ -36,3 +36,21 @@
         text-decoration: none;
     }
 }
+
+@media(min-width: 200px) and (max-width: 750px) {
+    .authorImage {
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+
+    .authorText {
+        p {
+            color: #FFFFFF;
+            width: 100%;
+            font-weight: bold;
+            font-size: 12px;
+        }
+    }
+}
