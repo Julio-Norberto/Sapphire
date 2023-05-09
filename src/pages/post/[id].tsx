@@ -1,5 +1,4 @@
 import styles from '../../styles/PostPage.module.scss'
-import img1 from '../../../public/azulEpreto.png'
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
@@ -25,10 +24,11 @@ type Author = {
 }
 
 export default function Post() {
-  const { query } = useRouter()
+  const { query, push } = useRouter()
 
   const [posts, setPosts] = useState<IPostsProps>()
   const [author, setAuthor] = useState<Author>()
+  const [authorId, setAuthorId] = useState<string>()
 
   useEffect(() => {
     const id: Variables = {
@@ -38,6 +38,7 @@ export default function Post() {
     loadPostById(id).then((response: any) => {
       setPosts(response.post.data)
       setAuthor(response.post.data.attributes.author.data.attributes.photo.data.attributes)
+      setAuthorId(response.post.data.attributes.author.data.id)
     }).catch((error) => {
       console.log(error)
       console.clear()
@@ -62,7 +63,7 @@ export default function Post() {
           </div>
 
           <div>
-            <h3> { posts? posts.attributes.authorName : 'John Doe' } </h3>
+            <h3 onClick={() => push(`/author/${authorId}`)} > { posts? posts.attributes.authorName : 'John Doe' } </h3>
             <p> { author?.authorTitle ? author.authorTitle : 'Software Developer' } </p>
           </div>
         </div>
