@@ -74,7 +74,9 @@ export const GETAUTHORBYID = gql`
       data {
         attributes {
           displayName,
-          slug,
+          description,
+          linkedinURL,
+          instagramURL,
           photo {
             data {
               attributes {

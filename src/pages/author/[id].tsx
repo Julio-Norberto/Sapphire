@@ -1,12 +1,14 @@
-import { Header } from '@/components/header'
 import styles from '../../styles/AuthorPage.module.scss'
 
-import { useRouter } from "next/router"
-import { Footer } from '@/components/Footer'
 import { useEffect, useState } from 'react'
+import { useRouter } from "next/router"
 import { Variables } from 'graphql-request'
+
 import { loadAuthorById } from '@/api/loadAuthorById'
 import { PostCard } from '@/components/PostCard'
+import { Header } from '@/components/header'
+import { Footer } from '@/components/Footer'
+import { AuthorComponent } from '@/components/AuthorComponent'
 
 interface IPostsProps {
   id: string,
@@ -30,10 +32,26 @@ interface IPostsProps {
   }
 }
 
+interface AuthorProps {
+  displayName: string,
+  description: string,
+  linkedinURL: string,
+  instagramURL: string,
+  photo: {
+    data: {
+      attributes: {
+        alternativeText: string,
+        url: string
+      }
+    }
+  }
+}
+
 export default function Author() {
   const { query } = useRouter()
 
   const [authorPosts, setAuthorPosts] = useState<IPostsProps[]>()
+  const [author, setAuthor] = useState<AuthorProps>()
 
   useEffect(() => {
     const id: Variables = {
@@ -42,6 +60,7 @@ export default function Author() {
 
     loadAuthorById(id).then((response: any) => {
       console.log(response.author.data)
+      setAuthor(response.author.data.attributes)
       setAuthorPosts(response.author.data.attributes.posts.data)
     }).catch((error) => {
       console.log(error)
@@ -54,7 +73,18 @@ export default function Author() {
   return (
     <div>
       <header>
-        <Header />
+        <Header 
+          component={ 
+            <AuthorComponent 
+              image={author ? author?.photo.data.attributes.url : ''} 
+              alternativeText={author ? author?.photo.data.attributes.alternativeText : ''} 
+              description={author ? author?.description : ''}
+              name={author ? author?.displayName : ''}
+              instagramURL={author ? author?.instagramURL: ''}
+              linkedinURL={author ? author?.linkedinURL: ''}
+            />
+          } 
+        />
       </header>
 
       <div className={styles.authorPageContainer}>
