@@ -1,5 +1,12 @@
 import styles from '../../styles/PostPage.module.scss'
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { Header } from "@/components/header"
@@ -57,7 +64,29 @@ export default function Post() {
         <span> { posts? posts.attributes.createdAt.slice(0, 10) : '' } </span>
 
         <div className={styles.postText} >
-          { posts ? posts.attributes.content : '' }
+          <ReactMarkdown 
+            children={posts ? posts.attributes.content : ''} 
+            remarkPlugins={[remarkGfm]}  
+            rehypePlugins={[rehypeRaw]}
+            components={{
+              code({node, inline, className, children, ...props}) {
+                const match = /language-(\w+)/.exec(className || '')
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, '')}
+                    style={dracula}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+          />
         </div>
 
         <div className={styles.postAuthor} >
