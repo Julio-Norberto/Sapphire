@@ -1,5 +1,12 @@
 import styles from '../../styles/PostPage.module.scss'
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { Header } from "@/components/header"
@@ -7,6 +14,7 @@ import { Footer } from "@/components/Footer"
 
 import { Variables } from "graphql-request"
 import { loadPostById } from '@/api/loadPostById'
+import { Loading } from '@/components/Loading'
 
 interface IPostsProps {
   attributes: {
@@ -29,6 +37,7 @@ export default function Post() {
   const [posts, setPosts] = useState<IPostsProps>()
   const [author, setAuthor] = useState<Author>()
   const [authorId, setAuthorId] = useState<string>()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const id: Variables = {
@@ -39,6 +48,7 @@ export default function Post() {
       setPosts(response.post.data)
       setAuthor(response.post.data.attributes.author.data.attributes.photo.data.attributes)
       setAuthorId(response.post.data.attributes.author.data.id)
+      setLoading(false)
     }).catch((error) => {
       console.log(error)
       console.clear()
@@ -48,22 +58,44 @@ export default function Post() {
 
   return (
     <div>
-      <Header title={posts ? posts.attributes.title : ''} />
+      <Header component={ loading ? <Loading /> : '' } title={posts ? posts.attributes.title : ''} />
 
       <div className={styles.postPageContainer} >
         <span> { posts? posts.attributes.createdAt.slice(0, 10) : '' } </span>
 
         <div className={styles.postText} >
-          { posts ? posts.attributes.content : '' }
+          <ReactMarkdown 
+            children={posts ? posts.attributes.content : ''} 
+            remarkPlugins={[remarkGfm]}  
+            rehypePlugins={[rehypeRaw]}
+            components={{
+              code({node, inline, className, children, ...props}) {
+                const match = /language-(\w+)/.exec(className || '')
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    {...props}
+                    children={String(children).replace(/\n$/, '')}
+                    style={dracula}
+                    language={match[1]}
+                    PreTag="div"
+                  />
+                ) : (
+                  <code {...props} className={className}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+          />
         </div>
 
         <div className={styles.postAuthor} >
           <div>
-            <img src={author?.url} alt={`${author?.alternativeText}`} />
+            <img src={author ? author?.url : ''} alt={`${author ? author?.alternativeText : ''}`} />
           </div>
 
           <div>
-            <h3 onClick={() => push(`/author/${authorId}`)} > { posts? posts.attributes.authorName : 'John Doe' } </h3>
+            <h3 onClick={() => push(`/author/${authorId}`)} > { posts? posts.attributes.authorName : '' } </h3>
             <p> { author?.authorTitle ? author.authorTitle : 'Software Developer' } </p>
           </div>
         </div>
