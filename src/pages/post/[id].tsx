@@ -9,7 +9,7 @@ import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
-import { Header } from "@/components/header"
+import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 
 import { Variables } from "graphql-request"

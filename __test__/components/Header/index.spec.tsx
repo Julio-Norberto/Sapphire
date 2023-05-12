@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { Header } from "@/components/header";
+import { Header } from "@/components/Header";
 
 describe('<Header />', () => {
     it('should be render an image with alternative text sapphire logo', () => {

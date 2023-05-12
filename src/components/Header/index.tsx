@@ -12,21 +12,21 @@ export const Header = ({ title, component }: HeaderProps) => {
 
       <div className={styles.menuContainer}>
         <div className={styles.logo}>
-            <a> <img height={58} src={logo.src} alt="sapphire logo" /> </a>
+            <a href='/' > <img height={58} src={logo.src} alt="sapphire logo" /> </a>
         </div>
 
         <div className={styles.menu}>
           <ul>
             <li>
-              <a href="#">Mini-cursos</a>
+              <a href="/category/5">Fundamentals</a>
             </li>
 
             <li>
-              <a href="#">Front-end</a>
+              <a href="/category/2">Front-end</a>
             </li>
 
             <li>
-              <a href="#">Back-end</a>
+              <a href="/category/3">Back-end</a>
             </li>
           </ul>
         </div>
