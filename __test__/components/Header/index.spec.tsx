@@ -27,7 +27,7 @@ describe('<Header />', () => {
 
     it('should be the text "Mini-cursos" in the link', () => {
         render(<Header />)
-        const arr = ['Mini-cursos', 'Front-end', 'Back-end']
+        const arr = ['Fundamentals', 'Front-end', 'Back-end']
 
         for(let i = 0; i < 3; i++) {
             const link = screen.getByRole('link', { name: arr[i] })
