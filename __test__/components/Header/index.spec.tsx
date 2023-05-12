@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { Header } from "@/components/header";
+import { Header } from "@/components/Header";
 
 describe('<Header />', () => {
     it('should be render an image with alternative text sapphire logo', () => {
@@ -27,7 +27,7 @@ describe('<Header />', () => {
 
     it('should be the text "Mini-cursos" in the link', () => {
         render(<Header />)
-        const arr = ['Mini-cursos', 'Front-end', 'Back-end']
+        const arr = ['Fundamentals', 'Front-end', 'Back-end']
 
         for(let i = 0; i < 3; i++) {
             const link = screen.getByRole('link', { name: arr[i] })

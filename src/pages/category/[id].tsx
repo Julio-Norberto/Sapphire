@@ -4,7 +4,7 @@ import { loadCategoryById } from "@/api/loadCategoryById";
 import { Footer } from "@/components/Footer";
 import { Loading } from '@/components/Loading';
 import { PostCard } from "@/components/PostCard";
-import { Header } from "@/components/header";
+import { Header } from "@/components/Header";
 import { Variables } from "graphql-request";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

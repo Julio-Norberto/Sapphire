@@ -1,6 +1,6 @@
 import styles from '@/styles/Home.module.scss'
 
-import { Header } from '@/components/header'
+import { Header } from '@/components/Header'
 import { Posts } from '@/components/Posts'
 import { Footer } from '@/components/Footer'
 

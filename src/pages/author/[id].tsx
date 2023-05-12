@@ -6,7 +6,7 @@ import { Variables } from 'graphql-request'
 
 import { loadAuthorById } from '@/api/loadAuthorById'
 import { PostCard } from '@/components/PostCard'
-import { Header } from '@/components/header'
+import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { AuthorComponent } from '@/components/AuthorComponent'
 import { Loading } from '@/components/Loading'
