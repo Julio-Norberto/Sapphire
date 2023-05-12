@@ -7,9 +7,17 @@ export const GETPOSTS = gql`
       data {
         id,
         attributes {
+          slug,
           title,
           excerpt,
-          categoryPost,
+          category {
+            data {
+              id,
+              attributes {
+                displayName
+              }
+            }
+          }
           cover {
             data {
               attributes {
@@ -98,6 +106,36 @@ export const GETAUTHORBYID = gql`
                     }
                   }
                 },
+                cover {
+                  data {
+                    attributes {
+                      alternativeText,
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const GETCATEGORYBYID = gql`
+  query GET_CATEGORY_BY_ID($id: ID!) 
+  {
+    category(id: $id) {
+      data {
+        attributes {
+          displayName,
+          posts {
+            data {
+              id,
+              attributes {
+                title,
+                excerpt,
                 cover {
                   data {
                     attributes {
