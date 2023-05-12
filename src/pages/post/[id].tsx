@@ -26,9 +26,16 @@ interface IPostsProps {
 }
 
 type Author = {
-  alternativeText: string,
-  url: string,
-  authorTitle?: string
+  displayName: string,
+  title?: string
+  photo: {
+    data: {
+      attributes: {
+        alternativeText: string,
+        url: string,
+      }
+    }
+  }
 }
 
 export default function Post() {
@@ -46,7 +53,7 @@ export default function Post() {
 
     loadPostById(id).then((response: any) => {
       setPosts(response.post.data)
-      setAuthor(response.post.data.attributes.author.data.attributes.photo.data.attributes)
+      setAuthor(response.post.data.attributes.author.data.attributes)
       setAuthorId(response.post.data.attributes.author.data.id)
       setLoading(false)
     }).catch((error) => {
@@ -91,12 +98,12 @@ export default function Post() {
 
         <div className={styles.postAuthor} >
           <div>
-            <img src={author ? author?.url : ''} alt={`${author ? author?.alternativeText : ''}`} />
+            <img src={author ? author.photo.data.attributes.url : ''} alt={`${author ? author.photo.data.attributes.alternativeText : ''}`} />
           </div>
 
           <div>
-            <h3 onClick={() => push(`/author/${authorId}`)} > { posts? posts.attributes.authorName : '' } </h3>
-            <p> { author?.authorTitle ? author.authorTitle : 'Software Developer' } </p>
+            <h3 onClick={() => push(`/author/${authorId}`)} > { author ? author.displayName : '' } </h3>
+            <p> { author?.title ? author.title : 'Autor do post' } </p>
           </div>
         </div>
       </div>

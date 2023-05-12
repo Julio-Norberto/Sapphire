@@ -44,7 +44,6 @@ export const GETPOSTBYID = gql`
           excerpt,
           content,
           categoryPost,
-          authorName,
           cover {
             data {
               attributes {
@@ -58,7 +57,7 @@ export const GETPOSTBYID = gql`
               id,
               attributes {
                 displayName,
-                slug,
+                title,
                 photo {
                   data {
                     attributes {
