@@ -2,6 +2,7 @@ import styles from '../../styles/Category.module.scss'
 
 import { loadCategoryById } from "@/api/loadCategoryById";
 import { Footer } from "@/components/Footer";
+import { Loading } from '@/components/Loading';
 import { PostCard } from "@/components/PostCard";
 import { Header } from "@/components/header";
 import { Variables } from "graphql-request";
@@ -34,6 +35,7 @@ export default function Category() {
 
   const [category, setCategory] = useState<ICategoryProps>()
   const [posts, setPosts] = useState<Posts[]>()
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const id: Variables = {
@@ -43,6 +45,7 @@ export default function Category() {
     loadCategoryById(id).then((response: any) => {
       setCategory(response.category.data.attributes)
       setPosts(response.category.data.attributes.posts.data)
+      setLoading(false)
     }).catch((error) => {
       console.log(error)
       console.clear()
@@ -54,7 +57,7 @@ export default function Category() {
   return(
     <div>
       <div>
-        <Header title={category ? category.displayName : ''} />
+        <Header component={ loading ? <Loading /> : '' } title={category ? category.displayName : ''} />
       </div>
 
       <div className={styles.categoryContainer} >
