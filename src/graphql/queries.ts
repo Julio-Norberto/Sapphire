@@ -7,9 +7,17 @@ export const GETPOSTS = gql`
       data {
         id,
         attributes {
+          slug,
           title,
           excerpt,
-          categoryPost,
+          category {
+            data {
+              id,
+              attributes {
+                displayName
+              }
+            }
+          }
           cover {
             data {
               attributes {

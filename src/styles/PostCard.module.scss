@@ -20,6 +20,10 @@
         font-family: 'Courier New', Courier, monospace;
         padding-left: 8px;
         padding-top: 4px;
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
 }
 
