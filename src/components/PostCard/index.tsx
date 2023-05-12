@@ -3,11 +3,11 @@ import styles from '../../styles/PostCard.module.scss'
 
 interface IPostCardProps {
   image: any
-  category: string
+  category?: string
   title: string
   summary: string
   id?: string
-  categoryId: string
+  categoryId?: string
 }
 
 export const PostCard = ({ image, category, title, summary, id, categoryId }: IPostCardProps) => {
