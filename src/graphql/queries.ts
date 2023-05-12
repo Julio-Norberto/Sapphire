@@ -122,3 +122,33 @@ export const GETAUTHORBYID = gql`
     }
   }
 `
+
+export const GETCATEGORYBYID = gql`
+  query GET_CATEGORY_BY_ID($id: ID!) 
+  {
+    category(id: $id) {
+      data {
+        attributes {
+          displayName,
+          posts {
+            data {
+              id,
+              attributes {
+                title,
+                excerpt,
+                cover {
+                  data {
+                    attributes {
+                      alternativeText,
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

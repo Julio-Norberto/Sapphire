@@ -1,7 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/header";
 
-export default function Categories() {
+export default function Category() {
   return(
     <div>
       <div>
