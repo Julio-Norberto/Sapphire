@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import styles from '../../styles/PostCard.module.scss'
 
 interface IPostCardProps {
@@ -11,13 +10,11 @@ interface IPostCardProps {
 }
 
 export const PostCard = ({ image, category, title, summary, id, categoryId }: IPostCardProps) => {
-  const { push } = useRouter()
-
   return (
     <div className={styles.postCardContainer} >
       <div className={styles.postCardImage}>
         <img width={`100%`} height={`200px`} src={image} alt="Capa do post" />
-        <p onClick={() => push(`/category/${categoryId}`)} > { category } </p>
+        <p> <a href={`/category/${categoryId}`}> { category } </a></p>
       </div>
 
       <div className={styles.postCardText}>
