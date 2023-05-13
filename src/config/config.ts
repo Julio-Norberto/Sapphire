@@ -1,0 +1,1 @@
+export const graphqlURL = "https://sapphire-backend-production.up.railway.app/graphql"
