@@ -13,7 +13,8 @@ export const Footer = () => {
         <p>Sapphire - 2023</p>
         
         <span>
-          <a href="https://www.freepik.com/free-vector/blue-black-abstract-background_23651431.htm#page=4&query=background vectors&position=8&from_view=search&track=robertav1">Image by Sketchepedia</a> on Freepik
+          <a href="https://www.freepik.com/free-vector/blue-black-abstract-background_23651431.htm#page=4&query=background vectors&position=8&from_view=search&track=robertav1">Image by Sketchepedia</a> on Freepik <br />
+          <a href="https://storyset.com/science">Science illustrations by Storyset</a>
         </span>
         
       </div>
