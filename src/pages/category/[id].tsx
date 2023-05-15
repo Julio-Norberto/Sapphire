@@ -1,10 +1,13 @@
 import styles from '../../styles/Category.module.scss'
 
 import { loadCategoryById } from "@/api/loadCategoryById";
+
 import { Footer } from "@/components/Footer";
 import { Loading } from '@/components/Loading';
 import { PostCard } from "@/components/PostCard";
 import { Header } from "@/components/Header";
+import { NoData } from '@/components/NoData';
+
 import { Variables } from "graphql-request";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -61,7 +64,7 @@ export default function Category() {
       </div>
 
       <div className={styles.categoryContainer} >
-         { posts ? posts.map((post) => (
+         { loading ? '' : posts && posts?.length != 0 ? posts.map((post) => (
           <PostCard
             key={post.id}
             id={post.id} 
@@ -69,7 +72,7 @@ export default function Category() {
             summary={post.attributes.excerpt} 
             image={post.attributes.cover.data.attributes.url} 
           />
-         )) : '' }
+         )) : <NoData /> }
       </div>
 
       <div>
